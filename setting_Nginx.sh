@@ -1,4 +1,8 @@
 #sudo ssh -i CilsyAWS.pem ubuntu@54.254.112.248
+echo "----------------Masukan Data terlebih dahulu---------------"
+read -p "Enter IP Mysql: " IpMysql
+read -p "Enter User database: " UserDB
+
 
 echo "----------------Installasi---------------"
 sudo apt update
@@ -53,7 +57,14 @@ sudo nginx -t
 sudo systemctl restart nginx
 
 echo "----------------Ambil data dari DUMP.sql---------------"
-mysql -u raxer -p -h 10.0.2.91 pesbuk < /var/www/web_baru/dump.sql
+mysql -u $userDb -p -h $IpMysql dbsosmed < /var/www/web_baru/dump.sql
+
+
+echo "----------------Ubah data config.php---------------"
+sudo sed -i 's/$db_host = "localhost";/$db_host = "'$IpMysql'";/g' /var/www/web_baru/config.php
+sed -i 's/$db_user = "devopscilsy";/$db_user = "raxer";/g' /var/www/web_baru/config.php
+sed -i 's/$db_pass = "1234567890";/$db_pass = "1234";/g' /var/www/web_baru/config.php
+
 
 echo "----Cek apakah server_name sama dengan IP ini ----"
 dig +short myip.opendns.com @resolver1.opendns.com
