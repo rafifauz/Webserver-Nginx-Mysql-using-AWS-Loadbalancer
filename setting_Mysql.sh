@@ -4,12 +4,13 @@ read -p "Enter IP Nginx2: " IpPrivateNginx2
 
 echo "----------------Installasi---------------"
 sudo apt-get update
-sudo apt-get install mysql-server -y
+sudo apt install mysql-server -y
 sudo mysql_secure_installation
 
 echo "----------------Mengganti Bind-Adress---------------"
 var1=$(hostname -i)
-sudo sed -i "s/bind-address            = 127.0.0.1/bind-address            =$var1/g" /etc/mysql/mysql.conf.d/mysqld.cnf
+sudo sed -i "s/127.0.0.1/$var1/g" /etc/mysql/mysql.conf.d/mysqld.cnf
+
 #sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf
 #bind-address            = $var1
 

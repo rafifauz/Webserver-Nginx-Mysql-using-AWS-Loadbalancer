@@ -1,7 +1,7 @@
 #sudo ssh -i CilsyAWS.pem ubuntu@54.254.112.248
 echo "----------------Masukan Data terlebih dahulu---------------"
-read -p "Enter IP Mysql: " IpMysql
-read -p "Enter User database: " UserDB
+#read -p "Enter IP Mysql: " IpMysql
+#read -p "Enter User database: " UserDB
 
 
 echo "----------------Installasi---------------"
@@ -57,12 +57,15 @@ sudo nginx -t
 sudo systemctl restart nginx
 
 echo "----------------Ambil data dari DUMP.sql---------------"
-mysql -u $userDb -p -h $IpMysql dbsosmed < /var/www/web_baru/dump.sql
+#mysql -u $UserDB -p -h $IpMysql dbsosmed < /var/www/web_baru/dump.sql
+ mysql -u "$UserDB" --password=1234 -h "$IpMysql" dbsosmed < /var/www/web_baru/dump.sql
 
+
+#mysql -u raxer1 -p -h 13.212.139.253 dbsosmed < /var/www/web_baru/dump.sql
 
 echo "----------------Ubah data config.php---------------"
 sudo sed -i 's/$db_host = "localhost";/$db_host = "'$IpMysql'";/g' /var/www/web_baru/config.php
-sed -i 's/$db_user = "devopscilsy";/$db_user = "raxer";/g' /var/www/web_baru/config.php
+sed -i 's/$db_user = "devopscilsy";/$db_user = "'$UserDB'";/g' /var/www/web_baru/config.php
 sed -i 's/$db_pass = "1234567890";/$db_pass = "1234";/g' /var/www/web_baru/config.php
 
 
