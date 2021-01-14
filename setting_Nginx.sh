@@ -1,7 +1,7 @@
 #sudo ssh -i CilsyAWS.pem ubuntu@54.254.112.248
 echo "----------------Masukan Data terlebih dahulu---------------"
 IpMysql=$(cat /home/ubuntu/Webserver-Nginx-Mysql-using-AWS-Loadbalancer/ip.txt | head -1 | tail -1)
-#read -p "Enter User database: " UserDB
+UserDB=raxer
 
 
 echo "----------------Installasi---------------"
