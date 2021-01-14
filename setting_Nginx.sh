@@ -1,8 +1,10 @@
 #sudo ssh -i CilsyAWS.pem ubuntu@54.254.112.248
 echo "----------------Masukan Data terlebih dahulu---------------"
+#read -p "Enter IP Mysql: " IpMysql
+#read -p "Enter User database: " UserDB
+
 IpMysql=$(cat /home/ubuntu/Webserver-Nginx-Mysql-using-AWS-Loadbalancer/ip.txt | head -1 | tail -1)
 UserDB=raxer
-
 
 echo "----------------Installasi---------------"
 sudo apt update

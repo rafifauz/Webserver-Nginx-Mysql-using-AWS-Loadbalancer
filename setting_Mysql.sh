@@ -27,7 +27,7 @@ sudo service mysql restart
 echo "----------------Mengganti Pugin root-user---------------"
 sudo ufw allow from $IpPrivateNginx1 to any port 3306
 
-mysql -u root -p <<EOL
+mysql -u root --password=1234 <<EOL
 CREATE DATABASE IF NOT EXISTS dbsosmed;
 CREATE USER 'raxer1'@'$IpPrivateNginx1' IDENTIFIED BY '1234';
 GRANT ALL PRIVILEGES ON * . * TO 'raxer1'@'$IpPrivateNginx1' WITH GRANT OPTION;
@@ -36,7 +36,7 @@ EOL
 
 sudo ufw allow from $IpPrivateNginx2 to any port 3306
 
-mysql -u root -p <<EOL
+mysql -u root --password=1234 <<EOL
 CREATE DATABASE IF NOT EXISTS dbsosmed;
 CREATE USER 'raxer2'@'$IpPrivateNginx2' IDENTIFIED BY '1234';
 GRANT ALL PRIVILEGES ON * . * TO 'raxer2'@'$IpPrivateNginx2' WITH GRANT OPTION;
