@@ -63,7 +63,7 @@ echo "----------------Ambil data dari DUMP.sql---------------"
  mysql -u "$UserDB" --password=1234 -h "$IpMysql" dbsosmed < /var/www/web_baru/dump.sql
 
 
-#mysql -u raxer1 -p -h 13.212.139.253 dbsosmed < /var/www/web_baru/dump.sql
+#mysql -u raxer1 --password=1234 -h 13.212.139.253 dbsosmed < /var/www/web_baru/dump.sql
 
 echo "----------------Ubah data config.php---------------"
 sudo sed -i 's/$db_host = "localhost";/$db_host = "'$IpMysql'";/g' /var/www/web_baru/config.php

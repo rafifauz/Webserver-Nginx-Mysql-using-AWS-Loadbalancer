@@ -27,6 +27,9 @@ sudo service mysql restart
 echo "----------------Mengganti Pugin root-user---------------"
 sudo ufw allow from $IpPrivateNginx1 to any port 3306
 
+#RENAME USER 'raxer1'@'10.0.2.205' TO 'raxer1'@'10.0.1.52';
+
+
 mysql -u root --password=1234 <<EOL
 CREATE DATABASE IF NOT EXISTS dbsosmed;
 CREATE USER 'raxer1'@'$IpPrivateNginx1' IDENTIFIED BY '1234';
